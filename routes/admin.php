@@ -21,10 +21,17 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::middleware('workshop.permission:view_page1')->group(function () {
         Route::get('page1', [Page1Controller::class, 'index'])->name('admin.page1');
     });
+    Route::middleware('workshop.permission:view_employee_list')->group(function () {
+        Route::get('employee-list', [EmployeesController::class, 'employeeList'])->name('admin.employees.list');
+        Route::get('employees-remove-role/{id}', [EmployeesController::class, 'editRoleView'])->name('admin.employees.remove.role.view');
+        Route::post('employees-remove-role-post',[EmployeesController::class, 'editRole'])->name('admin.employees.remove.role');
+    });
     Route::middleware('workshop.permission:add_employees_role')->group(function () {
-        Route::get('employees', [EmployeesController::class, 'index'])->name('admin.employees');
+        Route::get('employees-role-permission-add', [EmployeesController::class, 'index'])->name('admin.employees');
         Route::post('employee-add-role',[EmployeesController::class, 'store'])->name('admin.employees.post');
     });
-    Route::get('employees-remove-role', [EmployeesController::class, 'removeRoleView'])->name('admin.employees.remove.role.view');
-    Route::post('employees-remove-role-post',[EmployeesController::class, 'removeRole'])->name('admin.employees.remove.role');
+    // Route::middleware('workshop.permission:remove_employees_role')->group(function () {
+    //     Route::get('employees-remove-role', [EmployeesController::class, 'removeRoleView'])->name('admin.employees.remove.role.view');
+    //     Route::post('employees-remove-role-post',[EmployeesController::class, 'removeRole'])->name('admin.employees.remove.role');
+    // });
 });

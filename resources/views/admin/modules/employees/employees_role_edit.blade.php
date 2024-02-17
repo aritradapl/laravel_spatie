@@ -19,27 +19,29 @@
                     <form id="" action="{{route('admin.employees.remove.role')}}" method="post">
                         @csrf
                         <div class="form-group col-md-2">
-                            <select name="employee_id" class="form-control form_input" id="">
-                                <option value="" selected="" disabled="">Select Name</option>
-                                @if(count($employees) > 0)
-                                    @foreach($employees as $employee)
-                                        <option value="{{$employee->id}}">{{$employee->name}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
+                            <label>Name: </label><br>
+                            <p>{{ $user->name }}</p>
                         </div>
                         <div class="form-group col-md-2">
-                            <select name="role_id" class="form-control form_input" id="">
-                                <option value="" selected="" disabled="">Select Role</option>
-                                @if(count($roles) > 0)
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->name}}</option>
-                                    @endforeach
-                                @endif
-                            </select>
+                            <label>Phone: </label><br>
+                            <p>{{ $user->phone }}</p>
                         </div>
                         <div class="form-group col-md-2">
-                            <button type="submit" class="btn btn-danger">Remove</button>
+                            <label>Role: </label><br>
+                            <p>{{ $role[0]->name }}</p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Permissions:</label><br>
+                            @foreach($permissions as $permission)
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $user->permissions->contains($permission->id) ? 'checked' : '' }}> {{ $permission->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button type="submit" class="btn btn-primary">Edit</button>
                         </div>
                     </form>
                 </div>

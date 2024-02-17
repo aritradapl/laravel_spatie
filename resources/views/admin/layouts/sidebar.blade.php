@@ -11,12 +11,12 @@
                 @if(Auth::guard('admin')->user()->hasPermissionTo('view_page1','admin'))
                     <li class="{{ Request::routeIs('admin.page1') ? 'active' : '' }}"><a href="{{route('admin.page1')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Page1</span></a></li>
                 @endif
-                @if(Auth::guard('admin')->user()->hasPermissionTo('add_employees_role','admin'))
-                    <li class="{{ Request::routeIs('admin.employees') ? 'active' : '' }}"><a href="{{route('admin.employees')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Employees</span></a></li>
+                @if(Auth::guard('admin')->user()->hasPermissionTo('view_employee_list','admin'))
+                    <li class="{{ Request::routeIs('admin.employees.list') ? 'active' : '' }}"><a href="{{route('admin.employees.list')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Employees</span></a></li>
                 @endif
-                @if(Auth::guard('admin')->user()->hasPermissionTo('remove_employees_role','admin'))
-                    <li class="{{ Request::routeIs('admin.employees.remove.role.view') ? 'active' : '' }}"><a href="{{route('admin.employees.remove.role.view')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Remove Employee Role</span></a></li>
-                @endcan
+                @if(Auth::guard('admin')->user()->hasPermissionTo('add_employees_role','admin'))
+                    <li class="{{ Request::routeIs('admin.employees') ? 'active' : '' }}"><a href="{{route('admin.employees')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Add Permission</span></a></li>
+                @endif
             @endif
             @if(Auth::guard('admin')->user()->hasRole('employee'))
                 @if(Auth::guard('admin')->user()->hasPermissionTo('view_home','admin'))
@@ -25,12 +25,12 @@
                 @if(Auth::guard('admin')->user()->hasPermissionTo('view_page1','admin'))
                     <li class="{{ Request::routeIs('admin.page1') ? 'active' : '' }}"><a href="{{route('admin.page1')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Page1</span></a></li>
                 @endif
-                @if(Auth::guard('admin')->user()->hasPermissionTo('add_employees_role','admin'))
-                    <li class="{{ Request::routeIs('admin.employees') ? 'active' : '' }}"><a href="{{route('admin.employees')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Employees</span></a></li>
+                @if(Auth::guard('admin')->user()->hasPermissionTo('view_employee_list','admin'))
+                    <li class="{{ Request::routeIs('admin.employees.list') ? 'active' : '' }}"><a href="{{route('admin.employees.list')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Employees</span></a></li>
                 @endif
-                @if(Auth::guard('admin')->user()->hasPermissionTo('remove_employees_role','admin'))
-                    <li class="{{ Request::routeIs('admin.employees.remove.role.view') ? 'active' : '' }}"><a href="{{route('admin.employees.remove.role.view')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Remove Employee Role</span></a></li>
-                @endcan
+                @if(Auth::guard('admin')->user()->hasPermissionTo('add_employees_role','admin'))
+                    <li class="{{ Request::routeIs('admin.employees') ? 'active' : '' }}"><a href="{{route('admin.employees')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Add Permission</span></a></li>
+                @endif
             @endif
             {{-- <li class="{{ Request::routeIs('admin.home') ? 'active' : '' }}"><a href="{{route('admin.home')}}"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
             <li class="{{ Request::routeIs('admin.page1') ? 'active' : '' }}"><a href="{{route('admin.page1')}}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Page1</span></a></li>

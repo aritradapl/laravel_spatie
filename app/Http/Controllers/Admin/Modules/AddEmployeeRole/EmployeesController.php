@@ -36,27 +36,20 @@ class EmployeesController extends Controller
 
         return back()->with('status', 'Role and Permissions Assigned Successfully');
     }
-    public function removeRoleView(){
-        // dd(Auth::guard('admin')->user()->getAllPermissions());
-        // if(Auth::guard('admin')->user()->hasRole('admin'))
-        // {
-        //     dd('admin');
-        // }
-        // else{
-        //     dd('emp');
-        // }
-        // if(Auth::guard('admin')->user()->hasPermissionTo('remove_employees_role','admin'))
-        // {
-        //     dd('You can remove employees role');
-        // }
-        // else{
-        //     dd('You can not remove employees role');
-        // }
+    public function employeeList(){
         $employees = User::where('user_type',3)->get();
-        $roles = Role::all();
-        return view('admin.modules.employees.employees_role_remove',compact('employees','roles'));
+        return view('admin.modules.employees.employee_list',compact('employees'));
     }
-    public function removeRole(Request $request){
+    public function editRoleView($id){
+        $user = User::findOrFail($id);
+        $role = $user->roles;
+        $permissions = $user->permissions;
+        $employees = User::where('user_type', 3)->get();
+        $roles = Role::all();
+        return view('admin.modules.employees.employees_role_edit', compact('user', 'role', 'permissions', 'employees', 'roles'));
+    }
+
+    public function editRole(Request $request){
         $employee = User::findOrFail($request->employee_id);
         // dd($employee);
         $role = Role::findById($request->role_id, 'admin');
