@@ -14,28 +14,33 @@
                 <div class="row">
                 @include('admin.layouts.header')
                 </div>
-                <div class="user-dashboard">
-                    <h1>Hello {{Auth::guard('admin')->user()->name}}</h1>
-                    <form id="" action="{{route('admin.employees.remove.role')}}" method="post">
+                <div class="employee-dashboard">
+                    <h1>Edit Role and Permission</h1>
+                    <form id="" action="{{route('admin.employees.edit.role',$employee->id)}}" method="post">
                         @csrf
                         <div class="form-group col-md-2">
                             <label>Name: </label><br>
-                            <p>{{ $user->name }}</p>
+                            <p>{{ $employee->name }}</p>
                         </div>
                         <div class="form-group col-md-2">
                             <label>Phone: </label><br>
-                            <p>{{ $user->phone }}</p>
+                            <p>{{ $employee->phone }}</p>
                         </div>
                         <div class="form-group col-md-2">
-                            <label>Role: </label><br>
-                            <p>{{ $role[0]->name }}</p>
+                            <label>Role:</label><br>
+                            <select name="role_id" class="form-control form_input" id="">
+                                <option value="" disabled>Select Role</option>
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->id }}" {{ $employee->roles->contains($role->id) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label>Permissions:</label><br>
                             @foreach($permissions as $permission)
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $user->permissions->contains($permission->id) ? 'checked' : '' }}> {{ $permission->name }}
+                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $employee->permissions->contains($permission->id) ? 'checked' : '' }}> {{ $permission->name }}
                                     </label>
                                 </div>
                             @endforeach

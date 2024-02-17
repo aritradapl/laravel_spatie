@@ -16,7 +16,6 @@ class RolesAndPermissionsSeeder extends Seeder
        Permission::create(['name' => 'view_home', 'guard_name' => 'admin']);
        Permission::create(['name' => 'view_page1', 'guard_name' => 'admin']);
        Permission::create(['name' => 'add_employees_role', 'guard_name' => 'admin']);
-       Permission::create(['name' => 'remove_employees_role', 'guard_name' => 'admin']);
        Permission::create(['name' => 'view_employee_list', 'guard_name' => 'admin']);
     }
 }

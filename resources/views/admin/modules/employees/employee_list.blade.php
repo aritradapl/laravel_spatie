@@ -40,7 +40,7 @@
                                                 {{$employee->phone}}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.employees.remove.role.view',$employee->id)}}">Edit</a>
+                                                <a href="{{ route('admin.employees.edit.role.view',$employee->id)}}">Edit</a>
                                             </td>
                                         </tr>
                                     @endforeach
