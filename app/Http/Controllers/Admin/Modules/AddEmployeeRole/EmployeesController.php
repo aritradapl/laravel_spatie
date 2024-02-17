@@ -28,7 +28,7 @@ class EmployeesController extends Controller
             foreach ($request->permissions as $permissionId) {
                 $permission = Permission::findById($permissionId, 'admin');
                 // Assign permission directly to the role
-                $role->givePermissionTo($permission);
+                // $role->givePermissionTo($permission);
                 // Assign permission directly to the user
                 $employee->givePermissionTo($permission);
             }
