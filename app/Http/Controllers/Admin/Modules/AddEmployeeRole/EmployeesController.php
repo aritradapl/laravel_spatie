@@ -28,7 +28,7 @@ class EmployeesController extends Controller
             foreach ($request->permissions as $permissionId) {
                 $permission = Permission::findById($permissionId, 'admin');
                 // Assign permission directly to the role
-                $role->givePermissionTo($permission);
+                // $role->givePermissionTo($permission);
                 // Assign permission directly to the user
                 $employee->givePermissionTo($permission);
             }
@@ -36,31 +36,25 @@ class EmployeesController extends Controller
 
         return back()->with('status', 'Role and Permissions Assigned Successfully');
     }
-    public function removeRoleView(){
-        // dd(Auth::guard('admin')->user()->getAllPermissions());
-        // if(Auth::guard('admin')->user()->hasRole('admin'))
-        // {
-        //     dd('admin');
-        // }
-        // else{
-        //     dd('emp');
-        // }
-        // if(Auth::guard('admin')->user()->hasPermissionTo('remove_employees_role','admin'))
-        // {
-        //     dd('You can remove employees role');
-        // }
-        // else{
-        //     dd('You can not remove employees role');
-        // }
+    public function employeeList(){
         $employees = User::where('user_type',3)->get();
-        $roles = Role::all();
-        return view('admin.modules.employees.employees_role_remove',compact('employees','roles'));
+        return view('admin.modules.employees.employee_list',compact('employees'));
     }
-    public function removeRole(Request $request){
-        $employee = User::findOrFail($request->employee_id);
-        // dd($employee);
-        $role = Role::findById($request->role_id, 'admin');
-        $employee->removeRole($role);
-        return back()->with('status','Role Remove Successfully');
+    public function editRoleView($id){
+        $employee = User::findOrFail($id);
+        $permissions = Permission::all();
+        $roles = Role::all();
+        return view('admin.modules.employees.employees_role_edit', compact('employee','permissions','roles'));
+    }
+
+    public function editRole(Request $request, $id){
+        $employee = User::findOrFail($id);
+        $employee->roles()->sync([$request->role_id]);
+        if ($request->has('permissions')) {
+            $employee->permissions()->sync($request->permissions);
+        } else {
+            $employee->permissions()->detach(); // If no permissions are selected, detach all permissions
+        }
+        return redirect()->back()->with('success', 'Role and permissions updated successfully');
     }
 }
