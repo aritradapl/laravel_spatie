@@ -38,9 +38,11 @@
                         <div class="form-group col-md-2">
                             <label>Permissions:</label><br>
                             @foreach($permissions as $permission)
-                                <div class="checkbox">
+                                <div class="toggle">
                                     <label>
-                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $employee->permissions->contains($permission->id) ? 'checked' : '' }}> {{ $permission->name }}
+                                        <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" class="toggle-checkbox" {{ $employee->permissions->contains($permission->id) ? 'checked' : '' }}>
+                                        <div class="toggle-switch"></div>
+                                        <span>{{ $permission->name }}</span>
                                     </label>
                                 </div>
                             @endforeach
@@ -54,6 +56,45 @@
         </div>
     </div>
 </body>
+<style>
+    .toggle {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+.toggle-switch {
+    width: 50px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-switch:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2px;
+    transition: 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-switch:before {
+    left: calc(100% - 18px);
+    background-color: green; /* Change color to green when active */
+}
+
+</style>
 <script>
     $(document).ready(function(){
         $('[data-toggle="offcanvas"]').click(function(){
