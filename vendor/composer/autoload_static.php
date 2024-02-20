@@ -560,6 +560,7 @@ class ComposerStaticInit1eb922fe5ba06554a5326c63e265339b
         'App\\Http\\Controllers\\Frontend\\Modules\\Page1\\Page1Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/Modules/Page1/Page1Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Admin\\Authenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/Authenticated.php',
+        'App\\Http\\Middleware\\Admin\\PermissionCheck' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/PermissionCheck.php',
         'App\\Http\\Middleware\\Admin\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\Admin\\RedirectIfNotAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin/RedirectIfNotAuthenticated.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

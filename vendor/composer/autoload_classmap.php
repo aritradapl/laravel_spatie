@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\Frontend\\Modules\\Page1\\Page1Controller' => $baseDir . '/app/Http/Controllers/Frontend/Modules/Page1/Page1Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Admin\\Authenticated' => $baseDir . '/app/Http/Middleware/Admin/Authenticated.php',
+    'App\\Http\\Middleware\\Admin\\PermissionCheck' => $baseDir . '/app/Http/Middleware/Admin/PermissionCheck.php',
     'App\\Http\\Middleware\\Admin\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/Admin/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\Admin\\RedirectIfNotAuthenticated' => $baseDir . '/app/Http/Middleware/Admin/RedirectIfNotAuthenticated.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
